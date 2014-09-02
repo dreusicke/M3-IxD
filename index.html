@@ -64,7 +64,31 @@
             .data(dataset)
             .enter()
             .append("p")
-//            console.log(dataset[])
+            //            console.log(dataset[])
             .text(function(d){ return d;});
+
+
+            //Width and height
+            var w = 500;
+            var h = 100;
+
+            //Create SVG element
+            var svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+            svg.selectAll("circle")
+            .data(dataset)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {
+            return d[0];
+        })
+        .attr("cy", function(d) {
+            return d[1];
+        })
+        .attr("r", 5);
+
     </script>
 </body>
