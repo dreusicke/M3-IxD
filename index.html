@@ -94,7 +94,7 @@
         
         //Original data
 			var dataset2 = [
-
+//hw: Stunden pro Woche
 				[
 					{ x:  0, y:  8},
 					{ x:  1, y:  1},
@@ -115,46 +115,70 @@
 					{ x: 16, y: 25},
 					{ x: 17, y: 14}
 				],
+//mo: im Semester gebuchte Module --> nachfolgend gem. ECTS-Punkten gewichtet
+//				[
+//					{ x:  0, y:  1},
+//					{ x:  1, y:  0},
+//					{ x:  2, y:  3},
+//					{ x:  3, y:  3},
+//					{ x:  4, y:  2},
+//					{ x:  5, y:  5},
+//					{ x:  6, y:  3},
+//					{ x:  7, y:  1},
+//					{ x:  8, y:  1},
+//					{ x:  9, y:  2},
+//					{ x: 10, y:  4},
+//					{ x: 11, y:  3},
+//					{ x: 12, y:  2},
+//					{ x: 13, y:  3},
+//					{ x: 14, y:  2},
+//					{ x: 15, y:  1},
+//					{ x: 16, y:  3},
+//					{ x: 17, y:  3}
+//				],
+//mo: im Semester gebuchte Module multipliziert mit 5, weil ECTS-Wert entsprechend höher als Mikromodule; Problem: Buchung der Module ist eher "subjektive" Intensität, erst das erfolgreiche Bestehen der Module ist "objektive" Intensität
+				[
+					{ x:  0, y:  5},
+					{ x:  1, y:  0},
+					{ x:  2, y:  15},
+					{ x:  3, y:  15},
+					{ x:  4, y:  20},
+					{ x:  5, y:  50},
+					{ x:  6, y:  15},
+					{ x:  7, y:  5},
+					{ x:  8, y:  5},
+					{ x:  9, y:  10},
+					{ x: 10, y:  20},
+					{ x: 11, y:  15},
+					{ x: 12, y:  10},
+					{ x: 13, y:  15},
+					{ x: 14, y:  10},
+					{ x: 15, y:  5},
+					{ x: 16, y:  15},
+					{ x: 17, y:  15}
+				],
+//mi: im Semster gebuchte Mikromodule --> Problem wie bei den Modulen: Buchung vs. Bestehen
 				[
 					{ x:  0, y:  1},
 					{ x:  1, y:  0},
 					{ x:  2, y:  3},
-					{ x:  3, y:  3},
+					{ x:  3, y:  9},
 					{ x:  4, y:  2},
-					{ x:  5, y:  5},
-					{ x:  6, y:  3},
-					{ x:  7, y:  1},
-					{ x:  8, y:  1},
-					{ x:  9, y:  2},
-					{ x: 10, y:  4},
-					{ x: 11, y:  3},
-					{ x: 12, y:  2},
+					{ x:  5, y: 10},
+					{ x:  6, y:  2},
+					{ x:  7, y:  0},
+					{ x:  8, y:  0},
+					{ x:  9, y:  0},
+					{ x: 10, y:  0},
+					{ x: 11, y:  1},
+					{ x: 12, y:  0},
 					{ x: 13, y:  3},
-					{ x: 14, y:  2},
-					{ x: 15, y:  1},
-					{ x: 16, y:  3},
-					{ x: 17, y:  3}
+					{ x: 14, y:  4},
+					{ x: 15, y:  0},
+					{ x: 16, y:  2},
+					{ x: 17, y:  0}
 				],
-				[
-					{ x:  0, y: 5},
-					{ x:  1, y: 2},
-					{ x:  2, y: 5},
-					{ x:  3, y: 4},
-					{ x:  4, y: 6},
-					{ x:  5, y: 6},
-					{ x:  6, y: 4},
-					{ x:  7, y: 5},
-					{ x:  8, y: 2},
-					{ x:  9, y: 4},
-					{ x: 10, y: 4},
-					{ x: 11, y: 3},
-					{ x: 12, y: 5},
-					{ x: 13, y: 6},
-					{ x: 14, y: 5},
-					{ x: 15, y: 4},
-					{ x: 16, y: 4},
-					{ x: 17, y: 5}
-				],
+//in: Subjektive Intensität
 				[
 					{ x:  0, y: 4},
 					{ x:  1, y: 2},
@@ -175,6 +199,28 @@
 					{ x: 16, y: 5},
 					{ x: 17, y: 6}
 				],
+//au: Auswirkung auf Leben
+				[
+					{ x:  0, y: 5},
+					{ x:  1, y: 2},
+					{ x:  2, y: 5},
+					{ x:  3, y: 4},
+					{ x:  4, y: 6},
+					{ x:  5, y: 6},
+					{ x:  6, y: 4},
+					{ x:  7, y: 5},
+					{ x:  8, y: 2},
+					{ x:  9, y: 4},
+					{ x: 10, y: 4},
+					{ x: 11, y: 3},
+					{ x: 12, y: 5},
+					{ x: 13, y: 6},
+					{ x: 14, y: 5},
+					{ x: 15, y: 4},
+					{ x: 16, y: 4},
+					{ x: 17, y: 5}
+				],
+//eu: Ausgaben für das Studium in Euro --> ohne Normalisierung falsche Größenordnung der Zahlen
 //				[
 //					{ x:  0, y: 250},
 //					{ x:  1, y: 150},
@@ -195,46 +241,27 @@
 //					{ x: 16, y:2000},
 //					{ x: 17, y: 450}
 //				],
-				[
-					{ x:  0, y:  7},
-					{ x:  1, y:  0},
-					{ x:  2, y:  6},
-					{ x:  3, y:  4},
-					{ x:  4, y:  4},
-					{ x:  5, y: 11},
-					{ x:  6, y:  5},
-					{ x:  7, y: 11},
-					{ x:  8, y:  3},
-					{ x:  9, y:  6},
-					{ x: 10, y:  7},
-					{ x: 11, y:  9},
-					{ x: 12, y:  6},
-					{ x: 13, y:  5},
-					{ x: 14, y:  5},
-					{ x: 15, y:  7},
-					{ x: 16, y:  9},
-					{ x: 17, y:  9}
-				],
-				[
-					{ x:  0, y:  1},
-					{ x:  1, y:  0},
-					{ x:  2, y:  3},
-					{ x:  3, y:  9},
-					{ x:  4, y:  2},
-					{ x:  5, y: 10},
-					{ x:  6, y:  2},
-					{ x:  7, y:  0},
-					{ x:  8, y:  0},
-					{ x:  9, y:  0},
-					{ x: 10, y:  0},
-					{ x: 11, y:  1},
-					{ x: 12, y:  0},
-					{ x: 13, y:  3},
-					{ x: 14, y:  4},
-					{ x: 15, y:  0},
-					{ x: 16, y:  2},
-					{ x: 17, y:  0}
-				]
+//mg: Module gesamt gebucht --> gehört hier nicht mit rein, ist keine sinnvolle Frage
+//				[
+//					{ x:  0, y:  7},
+//					{ x:  1, y:  0},
+//					{ x:  2, y:  6},
+//					{ x:  3, y:  4},
+//					{ x:  4, y:  4},
+//					{ x:  5, y: 11},
+//					{ x:  6, y:  5},
+//					{ x:  7, y: 11},
+//					{ x:  8, y:  3},
+//					{ x:  9, y:  6},
+//					{ x: 10, y:  7},
+//					{ x: 11, y:  9},
+//					{ x: 12, y:  6},
+//					{ x: 13, y:  5},
+//					{ x: 14, y:  5},
+//					{ x: 15, y:  7},
+//					{ x: 16, y:  9},
+//					{ x: 17, y:  9}
+//				],
 			];
 
 			//Set up stack method
