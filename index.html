@@ -268,11 +268,12 @@
 		//Easy colors accessible via a 10-step ordinal scale
 		var colors = d3.scale.category10();
 
+		var padding = 20;
 		//Create SVG element
 		var svg = d3.select("body")
 		.append("svg")
 		.attr("width", w)
-		.attr("height", h);
+		.attr("height", h + padding);
 
 		// Add a group for each row of data
 		var groups = svg.selectAll("g")
@@ -328,7 +329,7 @@
 		.attr("x", function(d, i) {
 			return i * (w / dataset.length);
 		})
-		.attr("y", 10);
+		.attr("y", h + 10);
 
 	</script>
 </body>
