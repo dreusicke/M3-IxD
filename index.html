@@ -344,32 +344,49 @@
 
 
 
-			var chart = c3.generate({
+		var chart = c3.generate({
 			data: {
 			columns: [
-			['Stunden pro Woche',  8,  1,  8, 18, 35, 20, 15,  5,  5, 12, 25, 12, 15, 20, 20, 15, 25, 14,], //hw
-				['Module pro Semster',  5, 0, 15, 15, 20, 50, 15, 5, 5, 10, 20, 15, 10, 15, 10, 5, 15, 15], //mo
+				['Stunden pro Woche',  8,  1,  8, 18, 35, 20, 15,  5,  5, 12, 25, 12, 15, 20, 20, 15, 25, 14], //hw
+				['Module pro Semester',  5, 0, 15, 15, 20, 50, 15, 5, 5, 10, 20, 15, 10, 15, 10, 5, 15, 15], //mo
 				['Micromodule pro Semester', 1, 0, 3, 9, 2, 10, 2, 0, 0, 0, 0, 1, 0, 3, 4, 0, 2, 0], //mi
-				['subj. Intensität', 4, 2, 5, 5, 6, 4, 3, 4, 5, 4, 4, 4, 4, 4, 6, 4, 5, 6], //in
-				['Auswirkung aufs Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5], //au
-				  
-		],
+				['subjektive Intensität', 4, 2, 5, 5, 6, 4, 3, 4, 5, 4, 4, 4, 4, 4, 6, 4, 5, 6], //in
+				['Auswirkung auf\'s Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5], //au
+			],
 			type: 'bar',
-				groups: [
-					['Stunden pro Woche', 'Module pro Semster', 'Micromodule pro Semester', 'subj. Intensität', 'Auswirkung aufs Leben']
-				]
-		},
-
+//				groups: [
+//					['Stunden pro Woche', 'Module pro Semester', 'Micromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']
+//				]
+			},
+			color: {
+				pattern: ['#666666', '#888888', '#eeeeee', '#cccccc', '#aaaaaa']
+					},
+			axis: {
+				x: {
+					label: { // ADD
+						text: 'Entfernungskilometer',
+						position: 'outer-left',
+					},
+					type: 'category',
+					categories: ['0', '3', '4', '10', '130', '150', '190', '200', '250', '380', '400', '440', '450', '500', '505', '520', '555', '628']
+						},
+					y: {
+						label: { // ADD
+							text: 'Intensität des Studiums',
+							position: 'outer-bottom'
+						}
+					},
+				},
 			grid: {
 				y: {
-					lines: [{value:0}]
+					lines: [{value:10}]
 				}
 			}
 		});
 
-		setTimeout(function () {
-			chart.groups([['data1', 'data2', 'data3', 'data4']])
-		}, 3000);
+//		setTimeout(function () {
+//			chart.groups([['data1']])
+//		}, 3000);
 
 		//		setTimeout(function () {
 		//			chart.load({
@@ -377,9 +394,9 @@
 		//			});
 		//		}, 5500);
 		//
-		//		setTimeout(function () {
-		//			chart.groups([['data1', 'data2', 'data3', 'data4']])
-		//		}, 7000);
+		setTimeout(function () {
+			chart.groups([['Stunden pro Woche', 'subjektive Intensität', 'Module pro Semester', 'Micromodule pro Semester', 'Auswirkung auf\'s Leben']])
+		}, 5000);
 
 
 
