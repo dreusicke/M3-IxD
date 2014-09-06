@@ -24,31 +24,10 @@
 
 </head>
 <body>
-	<br />
-	<div class="question">Hat die Entfernung zwischen Wohnort und Studienort Einfluss auf die Intensität des Studiums? <br /> Kein Zusammenhang beobachtbar.</div>
+	<div class="question">Hat die Entfernung zwischen Wohnort und Studienort Einfluss auf die Intensität des Studiums? <br /> Hier ist kein Zusammenhang beobachtbar.</div>
 	<div id="chart"></div>
 
 	<script>
-		//		var dataset = [
-		//			[  0, 8,1, 1, 7, 250,4,5],
-		//			[  3, 1,0, 0, 0, 150,2,2],
-		//			[  4, 8,3, 3, 6, 200,5,5],
-		//			[ 10,18,3, 9, 4, 370,5,4],
-		//			[130,35,2, 2, 4, 650,6,6],
-		//			[150,20,5,10,11, 500,4,6],
-		//			[190,15,3, 2, 5, 350,3,4],
-		//			[200, 5,1, 0,11, 100,4,5],
-		//			[250, 5,1, 0, 3, 300,5,2],
-		//			[380,12,2, 0, 6, 350,4,4],
-		//			[400,25,4, 0, 7, 100,4,4],
-		//			[440,12,3, 1, 9, 250,4,3],
-		//			[450,15,2, 0, 6, 350,4,5],
-		//			[500,20,2, 4, 5, 400,6,5],
-		//			[505,15,1, 0, 7, 300,4,4],
-		//			[520,20,3, 3, 5, 500,4,6],
-		//			[555,25,3, 2, 9,2000,5,4],
-		//			[628,14,3, 0, 9, 450,6,5],
-
 
 		var chart = c3.generate({
 			data: {
@@ -60,14 +39,22 @@
 					['Auswirkung auf\'s Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5],
 				],
 				type: 'bar',
-	//				groups: [
-	//					['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']
-	//				]
+				order: 'desc',
 			},
 			padding: { top: 30, bottom: 10},
 			color: {
-				pattern: ['#666666', '#888888', '#eeeeee', '#cccccc', '#aaaaaa']
+				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
 					},
+			tooltip: {
+				grouped: false, // Default true
+				format: {
+									title: function (d) { return ' ' ; },
+									value: function (value, ratio, id) {
+										var format = id === 'data1' ? d3.format(',') : d3.format(' ');
+										return format(value);
+									}
+								}
+			},
 			axis: {
 				x: {
 					label: { // ADD
@@ -84,6 +71,67 @@
 						}
 					},
 				},
+		});
+
+		setTimeout(function () {
+			chart.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
+		}, 5000);
+	
+	</script>
+
+	
+	<div class="question">Hat das Alter Einfluss auf die Intensität des Studiums? <br /> Die Intensität könnte mit zunehmendem Alter abzunehmen.</div>
+	<div id="chart2"></div>
+
+	<script>
+
+		var chart2 = c3.generate({
+
+			bindto: '#chart2',
+			data: {
+				columns: [
+					['Stunden pro Woche',  20, 20, 18, 40, 40, 20,16,15,25,15,12,25,5,12,10,20,15,8,1,10,14,8],
+					//['Module pro Semester',  3,4,3,3,3,1,2,1,4,2,3,3,1,2,1,2,3,3,0,0,3,0],
+					['Module pro Semester',  15,20,15,15,15,5,10,5,20,10,15,15,5,10,5,10,15,15,0,0,15,0], //ECTS factor 5
+					['Mikromodule pro Semester', 3,0,9,0,0,4,5,0,0,0,1,2,0,0,0,4,2,3,0,3,0,3],
+					['subjektive Intensität', 4,5,5,6,6,5,4,4,4,4,4,5,4,4,4,6,3,5,2,3,6,3],
+					['Auswirkung auf\'s Leben', 6,4,4,6,6,4,3,4,4,5,3,4,5,4,4,5,4,5,2,3,5,5],
+				],
+				type: 'bar',
+				order: 'desc',
+			},
+			padding: { top: 30, bottom: 10},
+			color: {
+				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
+					},
+			tooltip: {
+				grouped: false, // Default true
+				format: {
+									title: function (d) { return ' ' ; },
+									value: function (value, ratio, id) {
+										var format = id === 'data1' ? d3.format(',') : d3.format(' ');
+										return format(value);
+									}
+								}
+			},
+
+			axis: {
+				x: {
+					label: { // ADD
+						text: 'Alter der Befragten',
+						position: 'outer-left',
+						width: '50px',
+					},
+					type: 'category',
+					categories: ['24', '24', '25', '25', '25', '25', '25', '25', '27', '27', '28', '28', '31', '31', '33', '34', '36', '38', '39', '42', '51']
+						},
+					y: {
+						label: { // ADD
+							text: 'Intensität des Studiums',
+							position: 'outer-bottom'
+						}
+					},
+				},
 			grid: {
 				y: {
 					lines: [{value:10}]
@@ -91,23 +139,74 @@
 			}
 		});
 
-//		setTimeout(function () {
-//			chart.groups([['data1']])
-//		}, 3000);
-
-		//		setTimeout(function () {
-		//			chart.load({
-		//				columns: [['data4', 100, -50, 150, 200, -300, -100]]
-		//			});
-		//		}, 5500);
-		//
 		setTimeout(function () {
-			chart.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
+			chart2.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
 		}, 5000);
+	
+	</script>
+	
+	<div class="question">Hat die Verantwortung für andere Personen (Freund_innen, Familie, Ehrenamt etc.) Einfluss auf die Intensität des Studiums? <br /> Antwort.</div>
+	<div id="chart2"></div>
 
+	<script>
 
+		var chart2 = c3.generate({
 
+			bindto: '#chart2',
+			data: {
+				columns: [
+					['Stunden pro Woche',  20, 20, 18, 40, 40, 20,16,15,25,15,12,25,5,12,10,20,15,8,1,10,14,8],
+					//['Module pro Semester',  3,4,3,3,3,1,2,1,4,2,3,3,1,2,1,2,3,3,0,0,3,0],
+					['Module pro Semester',  15,20,15,15,15,5,10,5,20,10,15,15,5,10,5,10,15,15,0,0,15,0], //ECTS factor 5
+					['Mikromodule pro Semester', 3,0,9,0,0,4,5,0,0,0,1,2,0,0,0,4,2,3,0,3,0,3],
+					['subjektive Intensität', 4,5,5,6,6,5,4,4,4,4,4,5,4,4,4,6,3,5,2,3,6,3],
+					['Auswirkung auf\'s Leben', 6,4,4,6,6,4,3,4,4,5,3,4,5,4,4,5,4,5,2,3,5,5],
+				],
+				type: 'bar',
+				order: 'desc',
+			},
+			padding: { top: 30, bottom: 10},
+			color: {
+				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
+					},
+			tooltip: {
+				grouped: false, // Default true
+				format: {
+									title: function (d) { return ' ' ; },
+									value: function (value, ratio, id) {
+										var format = id === 'data1' ? d3.format(',') : d3.format(' ');
+										return format(value);
+									}
+								}
+			},
 
+			axis: {
+				x: {
+					label: { // ADD
+						text: 'Alter der Befragten',
+						position: 'outer-left',
+						width: '50px',
+					},
+					type: 'category',
+					categories: ['24', '24', '25', '25', '25', '25', '25', '25', '27', '27', '28', '28', '31', '31', '33', '34', '36', '38', '39', '42', '51']
+						},
+					y: {
+						label: { // ADD
+							text: 'Intensität des Studiums',
+							position: 'outer-bottom'
+						}
+					},
+				},
+			grid: {
+				y: {
+					lines: [{value:10}]
+				}
+			}
+		});
 
+		setTimeout(function () {
+			chart2.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
+		}, 5000);
+	
 	</script>
 </body>
