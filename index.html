@@ -51,307 +51,21 @@
 		//			[400,25,4, 0, 7, 100,4,4],
 		//			[440,12,3, 1, 9, 250,4,3],
 		//			[450,15,2, 0, 6, 350,4,5],
-		//			[520,20,3, 3, 5, 500,4,6],
 		//			[500,20,2, 4, 5, 400,6,5],
 		//			[505,15,1, 0, 7, 300,4,4],
+		//			[520,20,3, 3, 5, 500,4,6],
 		//			[555,25,3, 2, 9,2000,5,4],
 		//			[628,14,3, 0, 9, 450,6,5],
-		//		];
-		//
-		//
-		//			//        d3.csv("umfragedaten_komplett.csv", 
-		//			//               function(data) { 
-		//			//                   dataset = data;
-		//			//                   console.log(data);
-		//			//               });
-		//
-		//			d3.select("body").selectAll("p")
-		//			.data(dataset)
-		//			.enter()
-		//			.append("p")
-		//			//            console.log(dataset[])
-		//			.text(function(d){ return d;});
-		var padding = 20;
-
-		//Width and height
-		var w = 800;
-		var h = 300 + padding;
-
-		//Original data
-		var dataset2 = [
-			//hw: Stunden pro Woche
-			[
-				{ x:  0, y:  8},
-				{ x:  1, y:  1},
-				{ x:  2, y:  8},
-				{ x:  3, y: 18},
-				{ x:  4, y: 35},
-				{ x:  5, y: 20},
-				{ x:  6, y: 15},
-				{ x:  7, y:  5},
-				{ x:  8, y:  5},
-				{ x:  9, y: 12},
-				{ x: 10, y: 25},
-				{ x: 11, y: 12},
-				{ x: 12, y: 15},
-				{ x: 13, y: 20},
-				{ x: 14, y: 20},
-				{ x: 15, y: 15},
-				{ x: 16, y: 25},
-				{ x: 17, y: 14}
-			],
-			//mo: im Semester gebuchte Module --> nachfolgend gem. ECTS-Punkten gewichtet
-			//				[
-			//					{ x:  0, y:  1},
-			//					{ x:  1, y:  0},
-			//					{ x:  2, y:  3},
-			//					{ x:  3, y:  3},
-			//					{ x:  4, y:  2},
-			//					{ x:  5, y:  5},
-			//					{ x:  6, y:  3},
-			//					{ x:  7, y:  1},
-			//					{ x:  8, y:  1},
-			//					{ x:  9, y:  2},
-			//					{ x: 10, y:  4},
-			//					{ x: 11, y:  3},
-			//					{ x: 12, y:  2},
-			//					{ x: 13, y:  3},
-			//					{ x: 14, y:  2},
-			//					{ x: 15, y:  1},
-			//					{ x: 16, y:  3},
-			//					{ x: 17, y:  3}
-			//				],
-			//mo: im Semester gebuchte Module multipliziert mit 5, weil ECTS-Wert entsprechend höher als Mikromodule; Problem: Buchung der Module ist eher "subjektive" Intensität, erst das erfolgreiche Bestehen der Module ist "objektive" Intensität
-			[
-				{ x:  0, y:  5},
-				{ x:  1, y:  0},
-				{ x:  2, y:  15},
-				{ x:  3, y:  15},
-				{ x:  4, y:  20},
-				{ x:  5, y:  50},
-				{ x:  6, y:  15},
-				{ x:  7, y:  5},
-				{ x:  8, y:  5},
-				{ x:  9, y:  10},
-				{ x: 10, y:  20},
-				{ x: 11, y:  15},
-				{ x: 12, y:  10},
-				{ x: 13, y:  15},
-				{ x: 14, y:  10},
-				{ x: 15, y:  5},
-				{ x: 16, y:  15},
-				{ x: 17, y:  15}
-			],
-			//mi: im Semster gebuchte Mikromodule --> Problem wie bei den Modulen: Buchung vs. Bestehen
-			[
-				{ x:  0, y:  1},
-				{ x:  1, y:  0},
-				{ x:  2, y:  3},
-				{ x:  3, y:  9},
-				{ x:  4, y:  2},
-				{ x:  5, y: 10},
-				{ x:  6, y:  2},
-				{ x:  7, y:  0},
-				{ x:  8, y:  0},
-				{ x:  9, y:  0},
-				{ x: 10, y:  0},
-				{ x: 11, y:  1},
-				{ x: 12, y:  0},
-				{ x: 13, y:  3},
-				{ x: 14, y:  4},
-				{ x: 15, y:  0},
-				{ x: 16, y:  2},
-				{ x: 17, y:  0}
-			],
-			//in: Subjektive Intensität
-			[
-				{ x:  0, y: 4},
-				{ x:  1, y: 2},
-				{ x:  2, y: 5},
-				{ x:  3, y: 5},
-				{ x:  4, y: 6},
-				{ x:  5, y: 4},
-				{ x:  6, y: 3},
-				{ x:  7, y: 4},
-				{ x:  8, y: 5},
-				{ x:  9, y: 4},
-				{ x: 10, y: 4},
-				{ x: 11, y: 4},
-				{ x: 12, y: 4},
-				{ x: 13, y: 4},
-				{ x: 14, y: 6},
-				{ x: 15, y: 4},
-				{ x: 16, y: 5},
-				{ x: 17, y: 6}
-			],
-			//au: Auswirkung auf Leben
-			[
-				{ x:  0, y: 5},
-				{ x:  1, y: 2},
-				{ x:  2, y: 5},
-				{ x:  3, y: 4},
-				{ x:  4, y: 6},
-				{ x:  5, y: 6},
-				{ x:  6, y: 4},
-				{ x:  7, y: 5},
-				{ x:  8, y: 2},
-				{ x:  9, y: 4},
-				{ x: 10, y: 4},
-				{ x: 11, y: 3},
-				{ x: 12, y: 5},
-				{ x: 13, y: 6},
-				{ x: 14, y: 5},
-				{ x: 15, y: 4},
-				{ x: 16, y: 4},
-				{ x: 17, y: 5}
-			],
-			//eu: Ausgaben für das Studium in Euro --> ohne Normalisierung falsche Größenordnung der Zahlen
-			//				[
-			//					{ x:  0, y: 250},
-			//					{ x:  1, y: 150},
-			//					{ x:  2, y: 200},
-			//					{ x:  3, y: 370},
-			//					{ x:  4, y: 650},
-			//					{ x:  5, y: 500},
-			//					{ x:  6, y: 350},
-			//					{ x:  7, y: 100},
-			//					{ x:  8, y: 300},
-			//					{ x:  9, y: 350},
-			//					{ x: 10, y: 100},
-			//					{ x: 11, y: 250},
-			//					{ x: 12, y: 350},
-			//					{ x: 13, y: 500},
-			//					{ x: 14, y: 400},
-			//					{ x: 15, y: 300},
-			//					{ x: 16, y:2000},
-			//					{ x: 17, y: 450}
-			//				],
-			//mg: Module gesamt gebucht --> gehört hier nicht mit rein, ist keine sinnvolle Frage
-			//				[
-			//					{ x:  0, y:  7},
-			//					{ x:  1, y:  0},
-			//					{ x:  2, y:  6},
-			//					{ x:  3, y:  4},
-			//					{ x:  4, y:  4},
-			//					{ x:  5, y: 11},
-			//					{ x:  6, y:  5},
-			//					{ x:  7, y: 11},
-			//					{ x:  8, y:  3},
-			//					{ x:  9, y:  6},
-			//					{ x: 10, y:  7},
-			//					{ x: 11, y:  9},
-			//					{ x: 12, y:  6},
-			//					{ x: 13, y:  5},
-			//					{ x: 14, y:  5},
-			//					{ x: 15, y:  7},
-			//					{ x: 16, y:  9},
-			//					{ x: 17, y:  9}
-			//				],
-		];
-
-			//Set up stack method
-			var stack = d3.layout.stack();
-
-			//Data, stacked
-			stack(dataset2);
-			console.log(dataset2);
-
-			//Set up scales
-			var xScale = d3.scale.ordinal()
-			.domain(d3.range(dataset2[0].length))
-			.rangeRoundBands([0, w], 0.05);
-
-		var yScale = d3.scale.linear()
-		.domain([0,				
-						 d3.max(dataset2, function(d) {
-							 return d3.max(d, function(d) {
-								 return d.y0 + d.y;
-							 });
-						 })
-						])
-		.range([0, h]);
-
-		//Easy colors accessible via a 10-step ordinal scale
-		var colors = d3.scale.ordinal()
-		.range(["#ffff00"], ["#cccccc"], ["#dddddd"], ["#eeeeee"], ["#bbbbbb"]);
-		//check http://www.solinea.com/blog/coloring-dcjs-stacked-bar-charts
-
-		//Create SVG element
-		var svg = d3.select("body")
-		.append("svg")
-		.attr("width", w)
-		.attr("height", h + padding);
-
-		// Add a group for each row of data
-		var groups = svg.selectAll("g")
-		.data(dataset2)
-		.enter()
-		.append("g")
-		.style("fill", function(d, i) {
-			return colors(d, i);
-			console.log(colors(d, i));
-		});
-
-		// Add a rect for each data value
-		var rects = groups.selectAll("rect")
-		.data(function(d) { return d; })
-		.enter()
-		.append("rect")
-		.attr("x", function(d, i) {
-			return xScale(i);
-		})
-		.attr("y", function(d) {
-			return (h - yScale(d.y)) - yScale(d.y0);
-		})
-		.attr("height", function(d) {
-			return yScale(d.y);
-		})
-		.attr("width", xScale.rangeBand());
-
-		var dataset3 = [
-			[  0], //array notation makes no sense here, but was easier to copy
-			[  3],
-			[  4],
-			[ 10],
-			[130],
-			[150],
-			[190],
-			[200],
-			[250],
-			[380],
-			[400],
-			[440],
-			[450],
-			[520],
-			[500],
-			[505],
-			[555],
-			[628],
-		];
-
-			svg.selectAll("text")
-			.data(dataset3)
-			.enter()
-			.append("text")
-			.text(function(d) { return d; })
-			.attr("x", function(d, i) {
-			return 10 + i * (w / dataset3.length);
-			})
-			.attr("y", h + 10)
-			.attr("fill", "#888")
-			.attr("text-anchor", "middle");
-
-
 
 
 		var chart = c3.generate({
 			data: {
 			columns: [
-				['Stunden pro Woche',  8,  1,  8, 18, 35, 20, 15,  5,  5, 12, 25, 12, 15, 20, 20, 15, 25, 14], //hw
-				['Module pro Semester',  5, 0, 15, 15, 20, 50, 15, 5, 5, 10, 20, 15, 10, 15, 10, 5, 15, 15], //mo
-				['Micromodule pro Semester', 1, 0, 3, 9, 2, 10, 2, 0, 0, 0, 0, 1, 0, 3, 4, 0, 2, 0], //mi
-				['subjektive Intensität', 4, 2, 5, 5, 6, 4, 3, 4, 5, 4, 4, 4, 4, 4, 6, 4, 5, 6], //in
-				['Auswirkung auf\'s Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5], //au
+				['Stunden pro Woche',  8,  1,  8, 18, 35, 20, 15,  5,  5, 12, 25, 12, 15, 20, 20, 15, 25, 14],
+				['Module pro Semester',  5, 0, 15, 15, 20, 50, 15, 5, 5, 10, 20, 15, 10, 15, 10, 5, 15, 15],
+				['Micromodule pro Semester', 1, 0, 3, 9, 2, 10, 2, 0, 0, 0, 0, 1, 0, 3, 4, 0, 2, 0],
+				['subjektive Intensität', 4, 2, 5, 5, 6, 4, 3, 4, 5, 4, 4, 4, 4, 4, 6, 4, 5, 6],
+				['Auswirkung auf\'s Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5],
 			],
 			type: 'bar',
 //				groups: [
@@ -359,7 +73,7 @@
 //				]
 			},
 			color: {
-				pattern: ['#666666', '#888888', '#eeeeee', '#cccccc', '#aaaaaa']
+				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
 					},
 			axis: {
 				x: {
@@ -395,7 +109,7 @@
 		//		}, 5500);
 		//
 		setTimeout(function () {
-			chart.groups([['Stunden pro Woche', 'subjektive Intensität', 'Module pro Semester', 'Micromodule pro Semester', 'Auswirkung auf\'s Leben']])
+			chart.groups([['Stunden pro Woche', 'Module pro Semester', 'Micromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
 		}, 5000);
 
 
