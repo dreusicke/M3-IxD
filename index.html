@@ -11,22 +11,13 @@
 		}
 
 		text {
-			font: 10px sans-serif;
+			font: 11px sans-serif;
 		}
-
-		.axis path,
-		.axis line {
-			fill: none;
-			stroke: #000;
-			shape-rendering: crispEdges;
+		
+		.question {
+		padding: 50px 0 0 60px;
 		}
-
-		form {
-			position: absolute;
-			right: 10px;
-			top: 10px;
-		}
-
+		
 	</style>
 	<script src="d3.min.js" charset="utf-8"></script>
 	<script src="c3.min.js"></script>
@@ -34,6 +25,7 @@
 </head>
 <body>
 	<br />
+	<div class="question">Hat die Entfernung zwischen Wohnort und Studienort Einfluss auf die Intensität des Studiums? <br /> Kein Zusammenhang beobachtbar.</div>
 	<div id="chart"></div>
 
 	<script>
@@ -60,20 +52,21 @@
 
 		var chart = c3.generate({
 			data: {
-			columns: [
-				['Stunden pro Woche',  8,  1,  8, 18, 35, 20, 15,  5,  5, 12, 25, 12, 15, 20, 20, 15, 25, 14],
-				['Module pro Semester',  5, 0, 15, 15, 20, 50, 15, 5, 5, 10, 20, 15, 10, 15, 10, 5, 15, 15],
-				['Micromodule pro Semester', 1, 0, 3, 9, 2, 10, 2, 0, 0, 0, 0, 1, 0, 3, 4, 0, 2, 0],
-				['subjektive Intensität', 4, 2, 5, 5, 6, 4, 3, 4, 5, 4, 4, 4, 4, 4, 6, 4, 5, 6],
-				['Auswirkung auf\'s Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5],
-			],
-			type: 'bar',
-//				groups: [
-//					['Stunden pro Woche', 'Module pro Semester', 'Micromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']
-//				]
+				columns: [
+					['Stunden pro Woche',  8,  1,  8, 18, 35, 20, 15,  5,  5, 12, 25, 12, 15, 20, 20, 15, 25, 14],
+					['Module pro Semester',  5, 0, 15, 15, 20, 50, 15, 5, 5, 10, 20, 15, 10, 15, 10, 5, 15, 15],
+					['Mikromodule pro Semester', 1, 0, 3, 9, 2, 10, 2, 0, 0, 0, 0, 1, 0, 3, 4, 0, 2, 0],
+					['subjektive Intensität', 4, 2, 5, 5, 6, 4, 3, 4, 5, 4, 4, 4, 4, 4, 6, 4, 5, 6],
+					['Auswirkung auf\'s Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5],
+				],
+				type: 'bar',
+	//				groups: [
+	//					['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']
+	//				]
 			},
+			padding: { top: 30, bottom: 10},
 			color: {
-				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
+				pattern: ['#666666', '#888888', '#eeeeee', '#cccccc', '#aaaaaa']
 					},
 			axis: {
 				x: {
@@ -109,7 +102,7 @@
 		//		}, 5500);
 		//
 		setTimeout(function () {
-			chart.groups([['Stunden pro Woche', 'Module pro Semester', 'Micromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
+			chart.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
 		}, 5000);
 
 
