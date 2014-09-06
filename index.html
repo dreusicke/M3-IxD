@@ -28,10 +28,14 @@
 		}
 
 	</style>
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="d3.min.js" charset="utf-8"></script>
+	<script src="c3.min.js"></script>
+
 </head>
 <body>
 	<br />
+	<div id="chart"></div>
+
 	<script>
 		//		var dataset = [
 		//			[  0, 8,1, 1, 7, 250,4,5],
@@ -268,7 +272,9 @@
 		.range([0, h]);
 
 		//Easy colors accessible via a 10-step ordinal scale
-		var colors = d3.scale.category10();
+		var colors = d3.scale.ordinal()
+		.range(["#ffff00"], ["#cccccc"], ["#dddddd"], ["#eeeeee"], ["#bbbbbb"]);
+		//check http://www.solinea.com/blog/coloring-dcjs-stacked-bar-charts
 
 		//Create SVG element
 		var svg = d3.select("body")
@@ -282,7 +288,8 @@
 		.enter()
 		.append("g")
 		.style("fill", function(d, i) {
-			return colors(i);
+			return colors(d, i);
+			console.log(colors(d, i));
 		});
 
 		// Add a rect for each data value
@@ -299,10 +306,10 @@
 		.attr("height", function(d) {
 			return yScale(d.y);
 		})
-		.attr("width", xScale.rangeBand())
+		.attr("width", xScale.rangeBand());
 
 		var dataset3 = [
-			[  0],
+			[  0], //array notation makes no sense here, but was easier to copy
 			[  3],
 			[  4],
 			[ 10],
@@ -333,5 +340,50 @@
 			.attr("y", h + 10)
 			.attr("fill", "#888")
 			.attr("text-anchor", "middle");
+
+
+
+
+			var chart = c3.generate({
+			data: {
+			columns: [
+			['Stunden pro Woche',  8,  1,  8, 18, 35, 20, 15,  5,  5, 12, 25, 12, 15, 20, 20, 15, 25, 14,], //hw
+				['Module pro Semster',  5, 0, 15, 15, 20, 50, 15, 5, 5, 10, 20, 15, 10, 15, 10, 5, 15, 15], //mo
+				['Micromodule pro Semester', 1, 0, 3, 9, 2, 10, 2, 0, 0, 0, 0, 1, 0, 3, 4, 0, 2, 0], //mi
+				['subj. Intensität', 4, 2, 5, 5, 6, 4, 3, 4, 5, 4, 4, 4, 4, 4, 6, 4, 5, 6], //in
+				['Auswirkung aufs Leben', 5, 2, 5, 4, 6, 6, 4, 5, 2, 4, 4, 3, 5, 6, 5, 4, 4, 5], //au
+				  
+		],
+			type: 'bar',
+				groups: [
+					['Stunden pro Woche', 'Module pro Semster', 'Micromodule pro Semester', 'subj. Intensität', 'Auswirkung aufs Leben']
+				]
+		},
+
+			grid: {
+				y: {
+					lines: [{value:0}]
+				}
+			}
+		});
+
+		setTimeout(function () {
+			chart.groups([['data1', 'data2', 'data3', 'data4']])
+		}, 3000);
+
+		//		setTimeout(function () {
+		//			chart.load({
+		//				columns: [['data4', 100, -50, 150, 200, -300, -100]]
+		//			});
+		//		}, 5500);
+		//
+		//		setTimeout(function () {
+		//			chart.groups([['data1', 'data2', 'data3', 'data4']])
+		//		}, 7000);
+
+
+
+
+
 	</script>
 </body>
