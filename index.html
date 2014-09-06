@@ -80,7 +80,7 @@
 	</script>
 
 	
-	<div class="question">Hat das Alter Einfluss auf die Intensität des Studiums? <br /> Die Intensität könnte mit zunehmendem Alter abzunehmen.</div>
+	<div class="question">Hat das Alter Einfluss auf die Intensität des Studiums? <br /> Die Intensität könnte mit zunehmendem Alter abnehmen.</div>
 	<div id="chart2"></div>
 
 	<script>
@@ -145,22 +145,22 @@
 	
 	</script>
 	
-	<div class="question">Hat die Verantwortung für andere Personen (Freund_innen, Familie, Ehrenamt etc.) Einfluss auf die Intensität des Studiums? <br /> Antwort.</div>
-	<div id="chart2"></div>
+	<div class="question">Hat die Verantwortung für andere Personen (Freunde, Familie, Ehrenamt etc.) Einfluss auf die Intensität des Studiums? <br /> Die Intensität könnte mit zunehmender Verantwortung abnehmen.</div>
+	<div id="chart3"></div>
 
 	<script>
 
-		var chart2 = c3.generate({
+		var chart3 = c3.generate({
 
-			bindto: '#chart2',
+			bindto: '#chart3',
 			data: {
 				columns: [
-					['Stunden pro Woche',  20, 20, 18, 40, 40, 20,16,15,25,15,12,25,5,12,10,20,15,8,1,10,14,8],
+					['Stunden pro Woche',  20,20,18,40,40,16,15,15,25,12,10,20,1,12,5,15,10,20,25,8,5,14,8],
 					//['Module pro Semester',  3,4,3,3,3,1,2,1,4,2,3,3,1,2,1,2,3,3,0,0,3,0],
-					['Module pro Semester',  15,20,15,15,15,5,10,5,20,10,15,15,5,10,5,10,15,15,0,0,15,0], //ECTS factor 5
-					['Mikromodule pro Semester', 3,0,9,0,0,4,5,0,0,0,1,2,0,0,0,4,2,3,0,3,0,3],
-					['subjektive Intensität', 4,5,5,6,6,5,4,4,4,4,4,5,4,4,4,6,3,5,2,3,6,3],
-					['Auswirkung auf\'s Leben', 6,4,4,6,6,4,3,4,4,5,3,4,5,4,4,5,4,5,2,3,5,5],
+					['Module pro Semester',  15,20,15,15,15,10,5,10,15,10,5,10,0,15,5,15,0,5,20,15,5,15,0], //ECTS factor 5
+					['Mikromodule pro Semester', 3,0,9,0,0,5,0,0,2,0,0,4,0,1,0,2,3,4,0,3,0,0,3],
+					['subjektive Intensität', 4,5,5,6,6,4,4,4,5,4,4,6,2,4,4,3,3,5,4,5,5,6,3],
+					['Auswirkung auf\'s Leben', 6,4,4,6,6,3,4,5,4,4,4,5,2,3,5,4,3,4,4,5,2,5,5],
 				],
 				type: 'bar',
 				order: 'desc',
@@ -183,12 +183,12 @@
 			axis: {
 				x: {
 					label: { // ADD
-						text: 'Alter der Befragten',
+						text: 'Verantwortung für n Personen',
 						position: 'outer-left',
 						width: '50px',
 					},
 					type: 'category',
-					categories: ['24', '24', '25', '25', '25', '25', '25', '25', '27', '27', '28', '28', '31', '31', '33', '34', '36', '38', '39', '42', '51']
+					categories: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '2', '2', '2', '2', '3', '7']
 						},
 					y: {
 						label: { // ADD
@@ -205,8 +205,12 @@
 		});
 
 		setTimeout(function () {
-			chart2.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
+			chart3.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
 		}, 5000);
 	
 	</script>
+
+	<div class="question">Weitere Fragestellungen sind durch Ein- und Ausblenden der Datengruppen beantwortbar. Klicken Sie hierzu auf einen oder mehrere Legendeneinträge (z.B. "Stunden pro Woche").</div>
+	<br /><br /><br />
+
 </body>
