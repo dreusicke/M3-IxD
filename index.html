@@ -16,15 +16,23 @@
 		
 		h1{
 		font-size: 1.5em;
-		padding: 50px 0 0 20px;
+		padding: 50px 0 40px 20px;
+		}
+		
+		h2{
+		font-size: 1.1em;
+		padding: 10px 0 0 20px;
 		}
 		
 		.intro {
-		padding: 50px 0 0 20px;
+		background-color: #F5F5F5;
+		padding: 5px;
+		margin-left: 20px;
+		border: 1px solid #E4E4E4;
 		}
 		
 		.question {
-		padding: 50px 0 0 60px;
+		padding: 100px 0 0 60px;
 		font-weight: bold;
 		}
 		
@@ -40,7 +48,13 @@
 </head>
 <body>
 	<h1>M3 IxD 2014, Datenvisualisierungen, Michael Dreusicke</h1>
-	<div class="intro">Weitere Fragestellungen sind durch Ein- und Ausblenden der Datengruppen beantwortbar. Zeigen oder klicken Sie hierzu auf einen oder mehrere Legendeneinträge (z.B. "Stunden pro Woche").</div>
+	<div class="intro">
+		<ul>
+			<li>Nach Aufruf dieser Seite werden die Balkendiagramme nach wenigen Sekunden automatisch gestapelt.</li>
+			<li>Sie können die Werte der <b>Daten</b> durch <i>Daraufzeigen mit der Maus</i> anzeigen lassen.</li>
+		<li>Weitere Fragestellungen sind durch Ein- und Ausblenden der <b>Datengruppen</b> beantwortbar. <i>Zeigen oder klicken</i> Sie hierzu auf einen oder mehrere Legendeneinträge (z.B. "Stunden pro Woche"), um Datengruppen temporär oder dauerhaft ein- oder auszublenden.</li>
+		</ul>
+			</div>
 	<div class="question">1. Hat die Entfernung zwischen Wohnort und Studienort Einfluss auf die Intensität des Studiums?</div>
 	<div class="answer">Hier konnte ich keinen Zusammenhang beobachten.</div>
 	
@@ -94,7 +108,7 @@
 
 		setTimeout(function () {
 			chart.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
-		}, 5000);
+		}, 4000);
 	
 	</script>
 
@@ -143,7 +157,7 @@
 						width: '50px',
 					},
 					type: 'category',
-					categories: ['24', '24', '25', '25', '25', '25', '25', '25', '27', '27', '28', '28', '31', '31', '33', '34', '36', '38', '39', '42', '51']
+					categories: ['24', '24', '25', '25', '25', '25', '25', '25', '27', '27', '28', '28', '31', '31', '33', '34', '36', '37', '38', '39', '42', '51']
 						},
 					y: {
 						label: { // ADD
@@ -227,7 +241,7 @@
 
 		setTimeout(function () {
 			chart3.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
-		}, 5000);
+		}, 6000);
 	
 	</script>
 <br /><br /><br />
