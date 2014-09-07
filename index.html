@@ -14,8 +14,23 @@
 			font: 11px sans-serif;
 		}
 		
+		h1{
+		font-size: 1.5em;
+		padding: 50px 0 0 20px;
+		}
+		
+		.intro {
+		padding: 50px 0 0 20px;
+		}
+		
 		.question {
 		padding: 50px 0 0 60px;
+		font-weight: bold;
+		}
+		
+		.answer {
+		padding: 10px 0 0 60px;
+		font-weight: normal;
 		}
 		
 	</style>
@@ -24,7 +39,11 @@
 
 </head>
 <body>
-	<div class="question">Hat die Entfernung zwischen Wohnort und Studienort Einfluss auf die Intensität des Studiums? <br /> Hier ist kein Zusammenhang beobachtbar.</div>
+	<h1>M3 IxD 2014, Datenvisualisierungen, Michael Dreusicke</h1>
+	<div class="intro">Weitere Fragestellungen sind durch Ein- und Ausblenden der Datengruppen beantwortbar. Zeigen oder klicken Sie hierzu auf einen oder mehrere Legendeneinträge (z.B. "Stunden pro Woche").</div>
+	<div class="question">1. Hat die Entfernung zwischen Wohnort und Studienort Einfluss auf die Intensität des Studiums?</div>
+	<div class="answer">Hier konnte ich keinen Zusammenhang beobachten.</div>
+	
 	<div id="chart"></div>
 
 	<script>
@@ -43,7 +62,7 @@
 			},
 			padding: { top: 30, bottom: 10},
 			color: {
-				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
+				pattern: ['#666666', '#888888', '#eeeeee', '#cccccc', '#aaaaaa']
 					},
 			tooltip: {
 				grouped: false, // Default true
@@ -80,7 +99,8 @@
 	</script>
 
 	
-	<div class="question">Hat das Alter Einfluss auf die Intensität des Studiums? <br /> Die Intensität könnte mit zunehmendem Alter abnehmen.</div>
+	<div class="question">2. Hat das Alter Einfluss auf die Intensität des Studiums?</div>
+	<div class="answer">Die Intensität könnte mit zunehmendem Alter abnehmen.</div>
 	<div id="chart2"></div>
 
 	<script>
@@ -102,7 +122,7 @@
 			},
 			padding: { top: 30, bottom: 10},
 			color: {
-				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
+				pattern: ['#3d5862', '#4F697F', '#aabdd0', '#68829B', '#7897AC']
 					},
 			tooltip: {
 				grouped: false, // Default true
@@ -145,7 +165,8 @@
 	
 	</script>
 	
-	<div class="question">Hat die Verantwortung für andere Personen (Freunde, Familie, Ehrenamt etc.) Einfluss auf die Intensität des Studiums? <br /> Die Intensität könnte mit zunehmender Verantwortung abnehmen.</div>
+	<div class="question">3. Hat die Verantwortung für andere Personen (Freunde, Familie, Ehrenamt etc.) Einfluss auf die Intensität des Studiums?</div>
+	<div class="answer">Die Intensität könnte mit zunehmender Verantwortung abnehmen.</div>
 	<div id="chart3"></div>
 
 	<script>
@@ -167,7 +188,7 @@
 			},
 			padding: { top: 30, bottom: 10},
 			color: {
-				pattern: ['#666666', '#888888', '#aaaaaa', '#cccccc', '#eeeeee']
+				pattern: ['#3d5862', '#875C09', '#7F3B2C', '#7037A2', '#587F59']
 					},
 			tooltip: {
 				grouped: false, // Default true
@@ -209,8 +230,6 @@
 		}, 5000);
 	
 	</script>
-
-	<div class="question">Weitere Fragestellungen sind durch Ein- und Ausblenden der Datengruppen beantwortbar. Klicken Sie hierzu auf einen oder mehrere Legendeneinträge (z.B. "Stunden pro Woche").</div>
-	<br /><br /><br />
+<br /><br /><br />
 
 </body>
