@@ -8,6 +8,7 @@
 			margin: auto;
 			position: relative;
 			width: 960px;
+			color: #444;
 		}
 
 		text {
@@ -16,23 +17,29 @@
 		
 		h1{
 		font-size: 1.5em;
-		padding: 50px 0 40px 20px;
+		margin: 100px 0 0 20px;
+		height: 1em;
 		}
 		
 		h2{
 		font-size: 1.1em;
-		padding: 10px 0 0 20px;
+		margin: 10px 0 0 20px;
+		}
+		
+		.author {
+		font-style: italic;
+		margin: 10px 0 40px 20px;
 		}
 		
 		.intro {
 		background-color: #F5F5F5;
 		padding: 5px;
-		margin-left: 20px;
+		margin: 0 0 0 20px;
 		border: 1px solid #E4E4E4;
 		}
 		
 		.question {
-		padding: 100px 0 0 60px;
+		padding: 50px 0 0 60px;
 		font-weight: bold;
 		}
 		
@@ -41,22 +48,30 @@
 		font-weight: normal;
 		}
 		
+		#chart, #chart2, #chart3 {
+		margin: 0 0 50px 0;
+		color: #ff038b;
+		}
+		
 	</style>
 	<script src="d3.min.js" charset="utf-8"></script>
 	<script src="c3.min.js"></script>
 
 </head>
 <body>
-	<h1>M3 IxD 2014, Datenvisualisierungen, Michael Dreusicke</h1>
+	<h1>M3 IxD 2014, Datenvisualisierungen</h1>
+	<div class="author">von <a href="http://michaeldreusicke.de" target="_blank">Michael Dreusicke</a></div>
 	<div class="intro">
+		<h2>Tipps</h2>
 		<ul>
-			<li>Nach Aufruf dieser Seite werden die Balkendiagramme nach wenigen Sekunden automatisch gestapelt.</li>
+			<li>Nach dem Aufruf dieser Seite werden die Balkendiagramme nach wenigen Sekunden (6, 9, 12) automatisch gestapelt.</li>
 			<li>Sie können die Werte der <b>Daten</b> durch <i>Daraufzeigen mit der Maus</i> anzeigen lassen.</li>
 		<li>Weitere Fragestellungen sind durch Ein- und Ausblenden der <b>Datengruppen</b> beantwortbar. <i>Zeigen oder klicken</i> Sie hierzu auf einen oder mehrere Legendeneinträge (z.B. "Stunden pro Woche"), um Datengruppen temporär oder dauerhaft ein- oder auszublenden.</li>
+			<li>Die Seite ist nur für Chrome/Mac getestet. Den Code zu dieser Seite einschließlich seiner Dokumentation finden Sie auf <a href="https://github.com/dreusicke/M3-IxD" target="_blank">https://github.com/dreusicke/M3-IxD</a>.</li>
 		</ul>
 			</div>
 	<div class="question">1. Hat die Entfernung zwischen Wohnort und Studienort Einfluss auf die Intensität des Studiums?</div>
-	<div class="answer">Hier konnte ich keinen Zusammenhang beobachten.</div>
+	<div class="answer">"Intensität des Studiums" habe ich dargestellt durch die Aufsummierung verschiedener Faktoren (Stapeldiagramm), die "Intensität" im Einzelfall ausmachen können. Zwischen Entfernung und Intensität konnte ich keinen Zusammenhang beobachten.</div>
 	
 	<div id="chart"></div>
 
@@ -108,13 +123,13 @@
 
 		setTimeout(function () {
 			chart.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
-		}, 4000);
+		}, 6000);
 	
 	</script>
 
 	
 	<div class="question">2. Hat das Alter Einfluss auf die Intensität des Studiums?</div>
-	<div class="answer">Die Intensität könnte mit zunehmendem Alter abnehmen.</div>
+	<div class="answer">Die Intensität könnte mit zunehmendem Alter abnehmen. Die aktuelle Datenlage lässt meines Erachtens jedoch mangels hinreichenden Umfangs keine Schlüsse zu, weder auf die tatsächliche Volatilität noch auf die tatsächliche Werteverteilung.</div>
 	<div id="chart2"></div>
 
 	<script>
@@ -175,12 +190,12 @@
 
 		setTimeout(function () {
 			chart2.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
-		}, 5000);
+		}, 9000);
 	
 	</script>
 	
 	<div class="question">3. Hat die Verantwortung für andere Personen (Freunde, Familie, Ehrenamt etc.) Einfluss auf die Intensität des Studiums?</div>
-	<div class="answer">Die Intensität könnte mit zunehmender Verantwortung abnehmen.</div>
+	<div class="answer">Die Intensität könnte mit zunehmender Verantwortung abnehmen, jedoch gelten auch hier meine Bedenken von Diagramm Nr.2.</div>
 	<div id="chart3"></div>
 
 	<script>
@@ -241,7 +256,7 @@
 
 		setTimeout(function () {
 			chart3.groups([['Stunden pro Woche', 'Module pro Semester', 'Mikromodule pro Semester', 'subjektive Intensität', 'Auswirkung auf\'s Leben']])
-		}, 6000);
+		}, 12000);
 	
 	</script>
 <br /><br /><br />
